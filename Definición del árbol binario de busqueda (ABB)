@@ -1,0 +1,85 @@
+class ArbolBinarioBusqueda {
+    Nodo raiz;
+
+    public ArbolBinarioBusqueda() {
+        this.raiz = null;
+    }
+
+    // Inserción
+    public void insertar(int valor) {
+        raiz = insertarRecursivo(raiz, valor);
+    }
+
+    private Nodo insertarRecursivo(Nodo nodo, int valor) {
+        if (nodo == null) {
+            return new Nodo(valor);
+        }
+
+        if (valor < nodo.valor) {
+            nodo.izquierda = insertarRecursivo(nodo.izquierda, valor);
+        } else if (valor > nodo.valor) {
+            nodo.derecha = insertarRecursivo(nodo.derecha, valor);
+        }
+
+        return nodo;
+    }
+
+    // Búsqueda
+    public boolean buscar(int valor) {
+        return buscarRecursivo(raiz, valor);
+    }
+
+    private boolean buscarRecursivo(Nodo nodo, int valor) {
+        if (nodo == null) {
+            return false;
+        }
+
+        if (valor == nodo.valor) {
+            return true;
+        } else if (valor < nodo.valor) {
+            return buscarRecursivo(nodo.izquierda, valor);
+        } else {
+            return buscarRecursivo(nodo.derecha, valor);
+        }
+    }
+
+    // Recorridos
+    public void inorden() {
+        inordenRecursivo(raiz);
+        System.out.println();
+    }
+
+    private void inordenRecursivo(Nodo nodo) {
+        if (nodo != null) {
+            inordenRecursivo(nodo.izquierda);
+            System.out.print(nodo.valor + " ");
+            inordenRecursivo(nodo.derecha);
+        }
+    }
+
+    public void preorden() {
+        preordenRecursivo(raiz);
+        System.out.println();
+    }
+
+    private void preordenRecursivo(Nodo nodo) {
+        if (nodo != null) {
+            System.out.print(nodo.valor + " ");
+            preordenRecursivo(nodo.izquierda);
+            preordenRecursivo(nodo.derecha);
+        }
+    }
+
+    public void postorden() {
+        postordenRecursivo(raiz);
+        System.out.println();
+    }
+
+    private void postordenRecursivo(Nodo nodo) {
+        if (nodo != null) {
+            postordenRecursivo(nodo.izquierda);
+            postordenRecursivo(nodo.derecha);
+            System.out.print(nodo.valor + " ");
+        }
+    }
+}
