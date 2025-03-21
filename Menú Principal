@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArbolBinarioBusqueda arbol = new ArbolBinarioBusqueda();
+        int opcion;
+
+        do {
+            System.out.println("\nMenú:");
+            System.out.println("1. Insertar");
+            System.out.println("2. Buscar");
+            System.out.println("3. Inorden");
+            System.out.println("4. Preorden");
+            System.out.println("5. Postorden");
+            System.out.println("0. Salir");
+            System.out.print("Ingrese opción: ");
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese valor a insertar: ");
+                    int valorInsertar = scanner.nextInt();
+                    arbol.insertar(valorInsertar);
+                    break;
+                case 2:
+                    System.out.print("Ingrese valor a buscar: ");
+                    int valorBuscar = scanner.nextInt();
+                    boolean encontrado = arbol.buscar(valorBuscar);
+                    System.out.println("Valor " + valorBuscar + (encontrado ? " encontrado" : " no encontrado"));
+                    break;
+                case 3:
+                    System.out.print("Recorrido Inorden: ");
+                    arbol.inorden();
+                    break;
+                case 4:
+                    System.out.print("Recorrido Preorden: ");
+                    arbol.preorden();
+                    break;
+                case 5:
+                    System.out.print("Recorrido Postorden: ");
+                    arbol.postorden();
+                    break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+        } while (opcion != 0);
+
+        scanner.close();
+    }
+}
